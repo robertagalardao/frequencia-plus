@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frequência+ | Monitoramento Acadêmico</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f4f6f9;
+      color: #222;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2f5bea, #5f7cff);
+      color: white;
+      padding: 28px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    header h1 {
+      font-size: 30px;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      opacity: 0.9;
+      font-size: 15px;
+    }
+
+    .header-badge {
+      background: rgba(255, 255, 255, 0.18);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+
+    main {
+      padding: 32px 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 16px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h2 {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .card strong {
+      font-size: 30px;
+      color: #2f5bea;
+    }
+
+    .filters {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      margin-bottom: 24px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: end;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+      min-width: 190px;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    input, select {
+      padding: 11px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      border: none;
+      border-radius: 10px;
+      padding: 11px 16px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      opacity: 0.9;
+    }
+
+    .btn-primary {
+      background: #2f5bea;
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #e9ecf5;
+      color: #2f5bea;
+    }
+
+    .table-section {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+
+    .table-header {
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .table-header h2 {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .table-header p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f8f9fc;
+      color: #555;
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .status {
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-weight: bold;
+      font-size: 12px;
+      display: inline-block;
+    }
+
+    .normal {
+      background: #e5f8ed;
+      color: #168042;
+    }
+
+    .atencao {
+      background: #fff4d8;
+      color: #9a6a00;
+    }
+
+    .risco {
+      background: #ffe3e3;
+      color: #b32626;
+    }
+
+    .progress {
+      height: 9px;
+      background: #e9ecf5;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 7px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: #2f5bea;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .modal-bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal {
+      background: white;
+      max-width: 430px;
+      width: 100%;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal h2 {
+      margin-bottom: 10px;
+      color: #2f5bea;
+    }
+
+    .modal p {
+      margin-bottom: 8px;
+      color: #444;
+      font-size: 15px;
+    }
+
+    .modal-actions {
+      margin-top: 18px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .alert-box {
+      margin-bottom: 24px;
+      background: #fff4d8;
+      border-left: 5px solid #e2a300;
+      padding: 16px;
+      border-radius: 12px;
+      color: #604400;
+      font-size: 14px;
+    }
+
+    @media (max-width: 720px) {
+      header, main {
+        padding: 24px 18px;
+      }
+
+      table {
+        min-width: 780px;
+      }
+
+      .table-section {
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Frequência+</h1>
+      <p>Plataforma para monitoramento de faltas acadêmicas e risco de reprovação.</p>
+    </div>
+    <div class="header-badge">Protótipo de IHC • Dados fictícios</div>
+  </header>
+
+  <main>
+    <section class="cards">
+      <div class="card">
+        <h2>Total de alunos</h2>
+        <strong id="totalAlunos">0</strong>
+      </div>
+      <div class="card">
+        <h2>Frequência média</h2>
+        <strong id="mediaFreq">0%</strong>
+      </div>
+      <div class="card">
+        <h2>Alunos em atenção</h2>
+        <strong id="totalAtencao">0</strong>
+      </div>
+      <div class="card">
+        <h2>Alunos em risco</h2>
+        <strong id="totalRisco">0</strong>
+      </div>
+    </section>
+
+    <div class="alert-box">
+      Alunos com frequência abaixo de 75% são classificados como <strong>risco</strong>. Entre 75% e 85%, aparecem como <strong>atenção</strong>.
+    </div>
+
+    <section class="filters" aria-label="Filtros de busca">
+      <div class="field">
+        <label for="busca">Buscar aluno</label>
+        <input type="text" id="busca" placeholder="Digite o nome do aluno" />
+      </div>
+
+      <div class="field">
+        <label for="disciplina">Disciplina</label>
+        <select id="disciplina">
+          <option value="Todas">Todas</option>
+          <option value="IHC">IHC</option>
+          <option value="Arquitetura">Arquitetura</option>
+          <option value="Paradigmas">Paradigmas</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="situacao">Situação</label>
+        <select id="situacao">
+          <option value="Todas">Todas</option>
+          <option value="Normal">Normal</option>
+          <option value="Atenção">Atenção</option>
+          <option value="Risco">Risco</option>
+        </select>
+      </div>
+
+      <button class="btn-primary" onclick="renderizarTabela()">Filtrar</button>
+      <button class="btn-secondary" onclick="limparFiltros()">Limpar</button>
+    </section>
+
+    <section class="table-section">
+      <div class="table-header">
+        <h2>Lista de frequência</h2>
+        <p>Visualize a situação dos alunos por disciplina.</p>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Aluno</th>
+            <th>Disciplina</th>
+            <th>Faltas</th>
+            <th>Frequência</th>
+            <th>Situação</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaAlunos"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <div class="modal-bg" id="modalBg">
+    <div class="modal">
+      <h2 id="modalNome">Detalhes do aluno</h2>
+      <p id="modalDisciplina"></p>
+      <p id="modalFaltas"></p>
+      <p id="modalFrequencia"></p>
+      <p id="modalSituacao"></p>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="fecharModal()">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const alunos = [
+      { nome: "Ana Clara", disciplina: "IHC", faltas: 2, frequencia: 92 },
+      { nome: "Bruno Silva", disciplina: "IHC", faltas: 6, frequencia: 78 },
+      { nome: "Camila Santos", disciplina: "Arquitetura", faltas: 8, frequencia: 70 },
+      { nome: "Diego Martins", disciplina: "Paradigmas", faltas: 1, frequencia: 96 },
+      { nome: "Eduarda Lima", disciplina: "IHC", faltas: 5, frequencia: 83 },
+      { nome: "Felipe Costa", disciplina: "Arquitetura", faltas: 9, frequencia: 68 },
+      { nome: "Giovana Alves", disciplina: "Paradigmas", faltas: 3, frequencia: 88 },
+      { nome: "Henrique Souza", disciplina: "IHC", faltas: 7, frequencia: 74 }
+    ];
+
+    function getSituacao(frequencia) {
+      if (frequencia < 75) return "Risco";
+      if (frequencia < 85) return "Atenção";
+      return "Normal";
+    }
+
+    function getClasseStatus(situacao) {
+      if (situacao === "Risco") return "risco";
+      if (situacao === "Atenção") return "atencao";
+      return "normal";
+    }
+
+    function renderizarCards(lista) {
+      const total = lista.length;
+      const media = total > 0 ? Math.round(lista.reduce((soma, aluno) => soma + aluno.frequencia, 0) / total) : 0;
+      const atencao = lista.filter(aluno => getSituacao(aluno.frequencia) === "Atenção").length;
+      const risco = lista.filter(aluno => getSituacao(aluno.frequencia) === "Risco").length;
+
+      document.getElementById("totalAlunos").textContent = total;
+      document.getElementById("mediaFreq").textContent = media + "%";
+      document.getElementById("totalAtencao").textContent = atencao;
+      document.getElementById("totalRisco").textContent = risco;
+    }
+
+    function renderizarTabela() {
+      const busca = document.getElementById("busca").value.toLowerCase();
+      const disciplina = document.getElementById("disciplina").value;
+      const situacao = document.getElementById("situacao").value;
+      const tabela = document.getElementById("tabelaAlunos");
+
+      const filtrados = alunos.filter(aluno => {
+        const situacaoAluno = getSituacao(aluno.frequencia);
+        const combinaBusca = aluno.nome.toLowerCase().includes(busca);
+        const combinaDisciplina = disciplina === "Todas" || aluno.disciplina === disciplina;
+        const combinaSituacao = situacao === "Todas" || situacaoAluno === situacao;
+
+        return combinaBusca && combinaDisciplina && combinaSituacao;
+      });
+
+      tabela.innerHTML = "";
+
+      if (filtrados.length === 0) {
+        tabela.innerHTML = `
+          <tr>
+            <td colspan="6">Nenhum aluno encontrado com os filtros selecionados.</td>
+          </tr>
+        `;
+      }
+
+      filtrados.forEach((aluno, index) => {
+        const situacaoAluno = getSituacao(aluno.frequencia);
+        const classe = getClasseStatus(situacaoAluno);
+
+        tabela.innerHTML += `
+          <tr>
+            <td>${aluno.nome}</td>
+            <td>${aluno.disciplina}</td>
+            <td>${aluno.faltas}</td>
+            <td>
+              ${aluno.frequencia}%
+              <div class="progress" aria-label="Barra de progresso da frequência">
+                <div class="progress-bar" style="width: ${aluno.frequencia}%"></div>
+              </div>
+            </td>
+            <td><span class="status ${classe}">${situacaoAluno}</span></td>
+            <td>
+              <div class="actions">
+                <button class="btn-secondary" onclick="abrirModal(${alunos.indexOf(aluno)})">Ver detalhes</button>
+                <button class="btn-primary" onclick="registrarFalta(${alunos.indexOf(aluno)})">Registrar falta</button>
+              </div>
+            </td>
+          </tr>
+        `;
+      });
+
+      renderizarCards(filtrados);
+    }
+
+    function limparFiltros() {
+      document.getElementById("busca").value = "";
+      document.getElementById("disciplina").value = "Todas";
+      document.getElementById("situacao").value = "Todas";
+      renderizarTabela();
+    }
+
+    function abrirModal(index) {
+      const aluno = alunos[index];
+      const situacaoAluno = getSituacao(aluno.frequencia);
+
+      document.getElementById("modalNome").textContent = aluno.nome;
+      document.getElementById("modalDisciplina").textContent = "Disciplina: " + aluno.disciplina;
+      document.getElementById("modalFaltas").textContent = "Quantidade de faltas: " + aluno.faltas;
+      document.getElementById("modalFrequencia").textContent = "Frequência atual: " + aluno.frequencia + "%";
+      document.getElementById("modalSituacao").textContent = "Situação: " + situacaoAluno;
+
+      document.getElementById("modalBg").style.display = "flex";
+    }
+
+    function fecharModal() {
+      document.getElementById("modalBg").style.display = "none";
+    }
+
+    function registrarFalta(index) {
+      const aluno = alunos[index];
+      const confirmar = confirm("Deseja registrar uma nova falta para " + aluno.nome + "?");
+
+      if (confirmar) {
+        aluno.faltas += 1;
+        aluno.frequencia = Math.max(0, aluno.frequencia - 3);
+        alert("Falta registrada com sucesso.");
+        renderizarTabela();
+      }
+    }
+
+    document.getElementById("busca").addEventListener("input", renderizarTabela);
+    document.getElementById("disciplina").addEventListener("change", renderizarTabela);
+    document.getElementById("situacao").addEventListener("change", renderizarTabela);
+
+    renderizarTabela();
+  </script>
+</body>
+</html>
