@@ -1,47 +1,49 @@
 # Frequência+
 
-Projeto desenvolvido para a disciplina de IHD/IHC, com o objetivo de criar uma plataforma online e avaliar sua interface com base em heurísticas de usabilidade.
+Projeto desenvolvido para a disciplina de IHD/IHC com foco na avaliação de usabilidade e aplicação de heurísticas em uma plataforma online.
 
-## Descrição
+## Descrição do projeto
 
-O Frequência+ é uma plataforma fictícia para monitoramento de frequência. A interface permite visualizar registros, acompanhar percentuais e identificar situações de atenção ou risco.
+O **Frequência+** é uma plataforma fictícia de monitoramento de frequência, criada para auxiliar no acompanhamento de faltas e identificação de alunos em situação de atenção ou risco.
+
+O projeto foi desenvolvido em duas etapas, permitindo comparar uma interface sem princípios de usabilidade e uma versão aprimorada com aplicação de heurísticas de IHC.
+
+---
 
 ## Versões do projeto
 
-O projeto possui duas versões:
+### 🔴 Versão sem heurísticas
 
-### 1. Versão inicial sem heurísticas
+A primeira versão foi criada propositalmente com problemas de usabilidade, apresentando excesso de cores, baixa consistência visual, pouca organização das informações e ausência de mecanismos adequados de prevenção de erros.
 
-A primeira versão foi criada propositalmente com problemas de usabilidade, como:
+**Acessar versão sem heurísticas:**
 
-- excesso de cores fortes;
-- baixa consistência visual;
-- pouca hierarquia de informação;
-- botões pouco claros;
-- ausência de confirmação antes de registrar falta;
-- filtros com baixa eficiência;
-- interface visualmente poluída.
+📍 https://robertagalardao.github.io/frequencia-plus/SemHeuristica.html
 
-Essa versão serviu como base para a avaliação.
+---
 
-### 2. Versão melhorada com heurísticas
+### 🩷 Versão com heurísticas
 
-A segunda versão foi desenvolvida aplicando princípios de usabilidade, principalmente as heurísticas de Jakob Nielsen.
+A segunda versão foi desenvolvida aplicando heurísticas de usabilidade, principalmente baseadas em Jakob Nielsen, buscando melhorar a experiência do usuário, organização visual, consistência e clareza das informações.
 
-Foram feitas melhorias como:
+Melhorias implementadas:
 
-- layout mais organizado;
-- cores mais consistentes;
-- melhor contraste;
-- cards informativos;
-- filtros mais claros;
-- feedback visual para o usuário;
-- confirmação antes de registrar falta;
-- status de frequência mais compreensíveis.
+- interface mais organizada;
+- padronização visual;
+- melhor hierarquia de informações;
+- feedback visual ao usuário;
+- confirmação antes do registro de faltas;
+- design mais limpo e intuitivo.
 
-## Heurísticas utilizadas
+**Acessar versão com heurísticas:**
 
-Foram consideradas heurísticas como:
+📍 https://robertagalardao.github.io/frequencia-plus/ComHeuristica.html
+
+---
+
+## Heurísticas aplicadas
+
+As principais heurísticas consideradas foram:
 
 - Visibilidade do status do sistema;
 - Consistência e padrões;
@@ -50,6 +52,8 @@ Foram consideradas heurísticas como:
 - Controle e liberdade do usuário;
 - Design estético e minimalista.
 
+---
+
 ## Tecnologias utilizadas
 
 - HTML
@@ -57,11 +61,9 @@ Foram consideradas heurísticas como:
 - JavaScript
 - GitHub Pages
 
-## Link do site
-
-https://robertagalardao.github.io/frequencia-plus/
+---
 
 ## Autoras
 
-Célia Cristina Slongo Raizer, 
-Roberta Elis Galardão  
+**Célia Cristina Slongo Raizer**
+**Roberta Elis Galardão**  
