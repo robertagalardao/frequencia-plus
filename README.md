@@ -65,5 +65,5 @@ As principais heurísticas consideradas foram:
 
 ## Autoras
 
-**Célia Cristina Slongo Raizer**
-**Roberta Elis Galardão**  
+- **Célia Cristina Slongo Raizer**
+- **Roberta Elis Galardão**
