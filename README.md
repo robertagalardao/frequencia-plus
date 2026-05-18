@@ -1,6 +1,6 @@
 # Frequência+
 
-Projeto desenvolvido para a disciplina de IHD/IHC com foco na avaliação de usabilidade e aplicação de heurísticas em uma plataforma online.
+Projeto desenvolvido para a disciplina de IHD com foco na avaliação de usabilidade e aplicação de heurísticas em uma plataforma online.
 
 ## Descrição do projeto
 
